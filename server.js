@@ -1,14 +1,9 @@
 const http = require("http");
-http
-  .get("https://unsplash.com/", (response) => {
-    let data = "";
-    response.on("data", (chunk) => {
-      data += chunk;
-    });
-    response.on("end", () => {
-      console.log(data);
-    });
-  })
-  .on("error", (error) => {
-    console.log(error);
-  });
+
+const requestListener = function (req, res) {
+  res.writeHead(200);
+  res.end("Hello, this is get response");
+};
+
+const server = http.createServer(requestListener);
+server.listen(5000);
